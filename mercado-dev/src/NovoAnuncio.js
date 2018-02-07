@@ -21,9 +21,9 @@ class NovoAnuncio extends Component{
       }
 
       const file = this.foto.files[0]
-      const { name, size } = file
+      const { name, size } = file 
       const ref = storage.ref(name)
-
+     
       console.log(this.foto, this.foto.files)
       /*
       base.push('anuncios', {
