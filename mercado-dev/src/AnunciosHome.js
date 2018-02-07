@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const AnunciosHome = ({anuncio}) => {
     return (
         <div className="col-lg-4 col-md-6 mb-4">
