@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 
 
 import HeaderInterno from './HeaderInterno'
@@ -7,35 +8,42 @@ import base, { storage } from './base'
 class NovoAnuncio extends Component{
     constructor(props){
         super(props)
-
+        this.state = {
+            sucess: false
+        }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     handleSubmit(e){
-      const novoAnuncio = {
-          nome: this.nome.value,
-          descricao: this.descricao.value,
-          preco: this.preco.value,
-          telefone: this.telefone.value,
-          vendedor: this.vendedor.value,
-          foto: 'http://placehold.it/200x140',
-      }
+     
 
       const file = this.foto.files[0]
       const { name, size } = file 
       const ref = storage.ref(name)
+      ref
+        .put(file)
+        .then( img =>{
+            const novoAnuncio = {
+                nome: this.nome.value,
+                descricao: this.descricao.value,
+                preco: this.preco.value,
+                telefone: this.telefone.value,
+                vendedor: this.vendedor.value,
+                foto: img.metadata.downloadURLs[0],
+                categoria: this.categorias.value
+            }
+            base.push('anuncios', {
+                data: novoAnuncio
+            })
+            .then(() => {
+             
+                this.setState({ sucess: true })
+               
+            }) 
+        })
      
       console.log(this.foto, this.foto.files)
       /*
-      base.push('anuncios', {
-          data: novoAnuncio
-      }, (err) => {
-        if(err){
-
-        }else{
-
-        }
-         
-      })  
+      
         console.log(novoAnuncio)*/
         e.preventDefault()
     }
@@ -43,10 +51,23 @@ class NovoAnuncio extends Component{
     render(){
         return(
             <div>
+                { this.state.sucess && <Redirect to='/' /> }
                 <HeaderInterno />
                     <div className='container' style={{paddingTop: '120px'}}>
                         <h1>Novo anúncio \0/</h1>
                         <form onSubmit={this.handleSubmit}>
+                            <div className='form-group'>
+                                <label htmlFor='categorias'>Categorias</label>
+                                <select ref={(ref) => this.categorias = ref}>
+                                { 
+                                    this.props.categorias.map( cat => <option key={cat.url}>{cat.categoria}</option>)
+                                    }
+                                </select>
+                            </div>
+                            <div className='form-group'>
+                                <label htmlFor='foto'>foto</label>
+                                <input type='file' className='form-control' id='foto' ref={(ref) => this.foto = ref} />
+                            </div>                       
                             <div className='form-group'>
                                 <label htmlFor='nome'>Nome</label>
                                 <input type='text' className='form-control' id='nome' placeholder='Nome' ref={(ref) => this.nome = ref} />
@@ -67,10 +88,8 @@ class NovoAnuncio extends Component{
                                 <label htmlFor='vendedor'>Vendedor</label>
                                 <input type='text' className='form-control' id='vendedor' placeholder='Vendedor'ref={(ref) => this.vendedor = ref} />
                             </div>
-                            <div className='form-group'>
-                                <label htmlFor='foto'>foto</label>
-                                <input type='file' className='form-control' id='foto' placeholder='Carregue sua foto'ref={(ref) => this.foto = ref} />
-                            </div>
+                            
+                            
                             <button type='submit' className='btn btn-primary'>Salvar anúncio</button>
                         </form>
                     </div>
