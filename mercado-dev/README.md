@@ -14,4 +14,4 @@ Como o Tulio diz, "quero surfar a crista da onda".
 
 - baixe o repositório
 - Node.js devidamente instalado
-- Na pasta 'mercado-dev' dê o -npm i-, depois npm start
+- Na pasta 'mercado-dev' dê o *npm i*, depois *npm start*
