@@ -3,7 +3,7 @@ import React from 'react'
 
 const AnunciosHome = ({anuncio}) => {
     return (
-        <div className="col-lg-4 col-md-6 mb-4">
+        <div className="col-md-4  mb-4">
          <div className="card h-100">
            <a href=""><img className="card-img-top" src={anuncio.foto} alt="Foto" /></a>
            <div className="card-body">

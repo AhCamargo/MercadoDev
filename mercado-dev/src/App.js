@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
+//import logo from './logo.svg'
 
 import Footer from './Footer'
 import base from './base'
@@ -7,7 +7,7 @@ import Home from './Home'
 import NovoAnuncio from './NovoAnuncio'
 import { BrowserRouter as Router, Route} from 'react-router-dom'
 
-import Modal from './Modal'
+
 import Categorias from './Categorias'
 
 
@@ -31,7 +31,6 @@ class App extends Component {
                   <Route path='/' exact render={() => <Home categorias={this.state.categorias} />} />
                   <Route path='/novo-anuncio' exact render={()=> <NovoAnuncio categorias={this.state.categorias} />} />
                   <Route path='/categorias' render={() => <Categorias categorias={this.state.categorias} />} />
-                  <Route path='/modal' exact component={Modal} />
                   <Footer />
 
                 </div>  
