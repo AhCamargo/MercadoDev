@@ -1,4 +1,4 @@
-## MercadoDev ##
+## MercadoDev -SEM REDUX!! ##
 - Projeto feito em React, seguindo as instruções do Professor Tulio Faria !
 - Esse projeto foi o pontapé inicial para que eu conhecesse o que é React ano passado, e hoje estou me aprofundando mais no Framework tão requisitado no momento.
 
