@@ -8,7 +8,7 @@ import Anuncio from './Anuncio'
 
 const Categorias = (props) => {
     return(
-            <div>
+        <div>
             <HeaderInterno />
             <div className='container' style={{paddingTop: '120px'}}>
                     <h1>Categorias</h1>
