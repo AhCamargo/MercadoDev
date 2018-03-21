@@ -17,7 +17,7 @@ class NovoAnuncio extends Component{
      
 
       const file = this.foto.files[0]
-      const { name, size } = file 
+      const { name } = file 
       const ref = storage.ref(name)
       ref
         .put(file)
@@ -29,7 +29,7 @@ class NovoAnuncio extends Component{
                 telefone: this.telefone.value,
                 vendedor: this.vendedor.value,
                 foto: img.metadata.downloadURLs[0],
-                categoria: this.categorias.value
+                categoria: this.categoria.value
             }
             base.push('anuncios', {
                 data: novoAnuncio
@@ -58,9 +58,9 @@ class NovoAnuncio extends Component{
                         <form onSubmit={this.handleSubmit}>
                             <div className='form-group'>
                                 <label htmlFor='categorias'>Categorias</label>
-                                <select ref={(ref) => this.categorias = ref}>
+                                <select ref={(ref) => this.categoria = ref}>
                                 { 
-                                    this.props.categorias.map( cat => <option key={cat.url}>{cat.categoria}</option>)
+                                    this.props.categorias.map( cat => <option value={cat.url}>{cat.categoria}</option>)
                                     }
                                 </select>
                             </div>

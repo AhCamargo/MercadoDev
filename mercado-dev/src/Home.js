@@ -14,6 +14,7 @@ class Home extends Component {
           anuncios: []
         }
         
+        
         base.bindToState('anuncios', {
           context: this,
           state: 'anuncios',
@@ -34,7 +35,7 @@ class Home extends Component {
 
                                     { Object.keys(this.state.anuncios).map( key => {
                                       const anuncio = this.state.anuncios[key]
-                                        return <AnunciosHome anuncio={anuncio} key={key} />
+                                        return <AnunciosHome key={key}  id={key} anuncio={anuncio} />
                                     })}
                                 
                                   </div>
@@ -44,7 +45,7 @@ class Home extends Component {
                                         { this.props.categorias.map( (cat, indice) => { 
                                             return [
                                                     <LinkCategoria categoria={cat} key={indice} />,
-                                                    ++index%4 === 0 && <div key={'c+indice'} className="w-100"></div>
+                                                    ++index%4 === 0 && <div key={'c'+indice} className="w-100"></div>
                                                 ] 
                                         })}
                                 

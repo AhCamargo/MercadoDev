@@ -1,8 +1,10 @@
 import React from 'react'
-import HeaderInterno from './HeaderInterno'
 import { Link, Route } from 'react-router-dom'
 
+import HeaderInterno from './HeaderInterno'
 import Categoria from './Categoria'
+import Anuncio from './Anuncio'
+
 
 const Categorias = (props) => {
     return(
@@ -17,7 +19,9 @@ const Categorias = (props) => {
                             props.categorias.map(
                                 cat => {
                                     return (
-                                       <li><Link to={`/categorias/${cat.url}`}>{cat.categoria}</Link></li>
+                                       <li key={cat.url}>
+                                         <Link to={`/categorias/${cat.url}`}>{cat.categoria}</Link>
+                                       </li>
                                     )
                                 }
                             )
@@ -26,7 +30,8 @@ const Categorias = (props) => {
                     
                     </div>
                     <div className="col-md-8">
-                        <Route path='/categorias/:urlCategoria' component={Categoria} />
+                        <Route path='/categorias/:urlCategoria' exact component={Categoria} />
+                        <Route path='/categorias/:urlCategoria/:idAnuncio' render={(props) => <Anuncio {...props} />} />
                     </div>
                     </div>
                 </div>    
